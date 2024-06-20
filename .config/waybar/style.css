@@ -1,0 +1,104 @@
+@import "./colors/oxocarbon-dark.css";
+
+/* Global */
+* {
+  font-family: "JetBrains Mono Nerd Font";
+  font-size: 0.9rem;
+  transition-property: color;
+  transition-duration: 0.01s;
+  /* background-color: shade(@base, 0.9); */
+  background-color: @background;
+  border-radius: 0;
+}
+
+@keyframes blink_red {
+  to {
+    color: @red;
+  }
+}
+
+.warning,
+.critical,
+.urgent {
+  animation-name: blink_red;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Bar */
+window#waybar {
+  background-color: transparent;
+}
+
+window > box {
+  /*background-color: transparent;*/
+  margin: 0.3rem;
+  margin-bottom: 0;
+}
+
+/*.modules-left,*/
+/*.modules-center,*/
+/*.modules-right {*/
+/*  border: solid @white 0.1rem;*/
+/*}*/
+
+#workspaces button {
+  padding-right: 0.4rem;
+  padding-left: 0.4rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  color: shade(@foreground, 0.3);
+  background: transparent;
+}
+
+#workspaces button.active {
+  color: @foreground;
+}
+
+#workspaces button.urgent {
+  color: @red;
+}
+
+#workspaces button:hover {
+  border-color: transparent;
+  color: @blue;
+}
+
+/* Tooltip */
+tooltip {
+  background-color: @background;
+}
+
+tooltip label {
+  color: @foreground;
+}
+
+#mode,
+#clock,
+#memory,
+#temperature,
+#cpu,
+#mpd,
+#idle_inhibitor,
+#backlight,
+#pulseaudio,
+#network,
+#battery,
+#tray,
+#disk,
+#custom-pacman {
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  margin: 0.3em 0 0.3em 0;
+  color: @foreground;
+}
+
+#battery.critical:not(.charging) {
+  color: @red;
+}
+
+#battery.charging {
+  color: @green;
+}

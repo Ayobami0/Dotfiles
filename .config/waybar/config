@@ -1,0 +1,238 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "modules-left": [
+        "hyprland/workspaces",
+    ],
+    "modules-center": [
+        "clock",
+    ],
+    "modules-right": [
+"custom/pacman",
+        "cpu",
+        "memory",
+        "backlight",
+        "pulseaudio",
+        "battery",
+        "tray"
+    ],
+
+    "group/apps": {
+    	"modules": [
+		"custom/browser",
+		"custom/discord",
+		"custom/spotify",
+		"custom/filemanager",
+	],
+	"orientation": "inherit",
+    },
+
+    "custom/filemanager": {
+    	"format": "",
+	"on-click": "thunar"
+    },
+    "custom/discord": {
+    	"format": "",
+	"on-click": "discord"
+    },
+    "custom/browser": {
+    	"format": "",
+	"on-click": "vivaldi"
+    },
+    "custom/spotify": {
+    	"format": "",
+	"on-click": "spotify"
+    },
+
+  "custom/pacman": {
+    "format": " {}",
+    "interval": 3600, // every hour
+    "exec": "checkupdates | wc -l", // # of updates
+    "exec-if": "exit 0", // always run; consider advanced run conditions
+"tooltip-format": "checkupdates",
+    "exec-if": "checkupdates | wc -l > 0", // always run; consider advanced run conditions
+    /* "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system */
+    /*"on-click": "kitty yay && kitty flatpak update && kitty gem update --system && kitty gem update && kitty rustup update && kitty  sudo npm update -g npm" */
+    "signal": 8
+  },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{icon}",
+	// "persistent-workspaces": {
+	//     "*": [2, 4, 5, 10],
+        // },
+        "format-icons": {
+	    "1": "I",
+	    "2": "II",
+	    "3": "III",
+	    "4": "IV",
+	    "5": "V",
+	    "6": "VI",
+	    "7": "VII",
+	    "8": "VIII",
+	    "9": "IX",
+	    "10": "X",
+	   // "urgent": "",
+	   // "active": "",
+	   // "default": ""
+        }
+    },
+
+
+    "bluetooth": {
+	"format": "",
+	"format-connected": " {device_alias}",
+	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+	"on-click": "overskride",
+	},
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "hyprland/window": {  
+		"format": "<span font='9' rise='-4444'>{}</span>"  
+	},
+    "mpd": {
+        "format": " {stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}%",
+        "format-disconnected": " Disconnected",
+        "format-stopped": " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+    "clock": {
+          "format": "󰥔 {:%I:%M %p  %A %b %d}",
+    "tooltip": true,
+    "tooltip-format": "{:%A, %d}\n<tt>{calendar}</tt>"
+    // "timezone": "America/New_York",
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": " {used}G"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 20,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+	"on-click": "kitty -e nmtui"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "{icon} ",
+        "format-muted": "",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+}

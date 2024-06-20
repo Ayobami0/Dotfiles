@@ -1,0 +1,6 @@
+.config/ranger/plugins/ranger_devicons/__pycache__
+.config/ranger/plugins/__pycache__
+.config/ranger/colorschemes/__pycache__
+.config/tmux/plugins
+.thunderbird
+.stow-local-ignore
