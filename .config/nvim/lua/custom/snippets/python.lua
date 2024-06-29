@@ -39,8 +39,10 @@ return {
 		{}: {} 
 	Returns:
 		{}
+	Raises:
+		{}
 """]],
-      { i(1), i(0), i(2, 'arg_name'), i(3, 'arg_desc'), i(4, 'return') }
+      { i(1), i(0), i(2, 'arg_name'), i(3, 'arg_desc'), i(4, 'return'), i(5, 'raises') }
     )
   ),
   s(
@@ -72,9 +74,11 @@ Typical usage example:
 
     Attributes:
       {}: {}
+    Methods:
+      {}: {}
     """
 ]],
-      { i(1, 'summary'), i(0, 'description'), i(2, 'attr'), i(3, 'attr_desc') }
+      { i(1, 'summary'), i(0, 'description'), i(2, 'attr'), i(3, 'attr_desc'), i(4, 'mtd'), i(5, 'mtd_desc') }
     )
   ),
 }

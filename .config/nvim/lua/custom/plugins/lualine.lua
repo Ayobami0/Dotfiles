@@ -5,6 +5,7 @@ return {
   config = function()
     require('lualine').setup {
       options = {
+        disabled_filetypes = { 'NvimTree' },
         component_separators = '',
         section_separators = '',
       },
@@ -24,10 +25,6 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {},
     }
   end,
 }

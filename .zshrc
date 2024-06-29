@@ -35,6 +35,7 @@ eval $(thefuck --alias)
 
 alias fk=fuck
 alias rc="ranger ~/.config"
+alias emacs="emacs -nw"
 
 export VISUAL='nvim'
 export EDITOR='nvim'
