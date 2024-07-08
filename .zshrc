@@ -1,22 +1,19 @@
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 export ZSH="$HOME/.oh-my-zsh"
-
 # tmux
 export ZSH_TMUX_DEFAULT_SESSION_NAME=$USER
 export ZSH_TMUX_AUTOSTART=false
 export ZSH_TMUX_AUTONAME_SESSION=true
 export ZSH_TMUX_AUTOQUIT=false
 
+export FZF_DEFAULT_OPTS_FILE=~/.fzfrc
+
 
 zstyle ':omz:update' mode disabled  # disable automatic updates
 
-# ZSH_THEME="miloshadzic"
+ZSH_THEME="miloshadzic"
 # ZSH_THEME="random"
 # ZSH_THEME="minimal"
-ZSH_THEME="nicoulaj"
+# ZSH_THEME="nicoulaj"
 # ZSH_THEME="sorin"
 ENABLE_CORRECTION="false"
 
@@ -30,6 +27,9 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source <(fzf --zsh)
+
+set -o vi
 
 eval $(thefuck --alias)
 
@@ -57,29 +57,53 @@ export ANDROID_SDK_ROOT='/opt/android-sdk'
 export PATH="$PATH:$(go env GOPATH)/bin"
 # export PATH='/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/flutter/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
 
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-eval "$(pyenv virtualenv-init -)"
-#
-# source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-#
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-#
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#
+# attach to an existing session
 tls() {
   session="$(tmux ls | fzf |  cut -d ':' -f 1)"
 
-  if [[ "$session" != "" ]]; then
-    tmux attach-session -t "$session"
+  if [[ "$session" != "" ]]
+    then
+	    if [[ "$TERM" = "tmux-256color" ]]
+	    then
+		    tmux switchc -t "$session"
+	    else
+		    tmux attach-session -t "$session"
+	fi
   fi
 }
 
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/Ayobami/google-cloud-sdk/path.zsh.inc' ]; then . '/home/Ayobami/google-cloud-sdk/path.zsh.inc'; fi
+# fda - including hidden directories
+fda() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/Ayobami/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/Ayobami/google-cloud-sdk/completion.zsh.inc'; fi
+# fh - repeat history
+fh() {
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
+
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+# eval "$(pyenv virtualenv-init -)"
+
+
+
+# # The next line updates PATH for the Google Cloud SDK.
+# if [ -f '/home/Ayobami/google-cloud-sdk/path.zsh.inc' ]; then . '/home/Ayobami/google-cloud-sdk/path.zsh.inc'; fi
+#
+# # The next line enables shell command completion for gcloud.
+# if [ -f '/home/Ayobami/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/Ayobami/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

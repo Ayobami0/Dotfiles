@@ -17,7 +17,6 @@ return {
       view = {
         adaptive_size = false,
         side = 'left',
-        width = 30,
         preserve_window_proportions = true,
       },
       git = {
@@ -63,11 +62,11 @@ return {
               arrow_closed = '',
             },
             git = {
-              unstaged = '✗',
+              unstaged = '~',
               staged = '✓',
               unmerged = '',
               renamed = '➜',
-              untracked = '~',
+              untracked = '✗',
               deleted = '',
               ignored = '◌',
             },
@@ -80,6 +79,7 @@ return {
   config = function(_, opts)
     require('nvim-tree').setup(opts)
   end,
+
   keys = {
     { '<leader>o', '<cmd>NvimTreeToggle<cr>', desc = 'Open Nvimtree' },
   },
