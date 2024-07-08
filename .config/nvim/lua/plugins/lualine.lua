@@ -9,6 +9,8 @@ return {
         section_separators = "",
         disabled_filetypes = {
           "NvimTree",
+          "NeogitStatus"
+
         },
       },
       sections = {
