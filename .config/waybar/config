@@ -8,14 +8,26 @@
         "clock",
     ],
     "modules-right": [
-"custom/pacman",
+        "custom/pacman",
+        "custom/seperator",
         "cpu",
+        "custom/seperator",
         "memory",
+        "custom/seperator",
         "backlight",
+        "custom/seperator",
         "pulseaudio",
+        "custom/seperator",
         "battery",
+        "custom/seperator",
+        "network",
+        "custom/seperator",
         "tray"
     ],
+
+  "custom/seperator": {
+    "format": "|"
+  },
 
     "group/apps": {
     	"modules": [
@@ -61,23 +73,23 @@
         "all-outputs": true,
         "warp-on-scroll": false,
         "format": "{icon}",
-	// "persistent-workspaces": {
-	//     "*": [2, 4, 5, 10],
-        // },
-        "format-icons": {
-	    "1": "I",
-	    "2": "II",
-	    "3": "III",
-	    "4": "IV",
-	    "5": "V",
-	    "6": "VI",
-	    "7": "VII",
-	    "8": "VIII",
-	    "9": "IX",
-	    "10": "X",
-	   // "urgent": "",
-	   // "active": "",
-	   // "default": ""
+        "persistent-workspaces": {
+	        "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        },
+    "format-icons": {
+	   "1": "一",
+	   "2": "二",
+	   "3": "三",
+	   "4": "四",
+	   "5": "五",
+	   "6": "六",
+	   "7": "七",
+	   "8": "八",
+	   "9": "九",
+	   "10": "十",
+	  // "urgent": "",
+	  // "active": "",
+	  // "default": ""
         }
     },
 
@@ -143,17 +155,20 @@
         "spacing": 10
     },
     "clock": {
-          "format": "󰥔 {:%I:%M %p  %A %b %d}",
+    // "format": "󰥔 {:%I:%M %p  %A %b %d}",
+          "format": "{:%I:%M %p  %A %b %d}",
     "tooltip": true,
     "tooltip-format": "{:%A, %d}\n<tt>{calendar}</tt>"
     // "timezone": "America/New_York",
     },
     "cpu": {
-        "format": " {usage}%",
+        // "format": " {usage}%",
+        "format": "CPU {usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": " {used}G"
+        // "format": " {used}G"
+        "format": "MEM {used}G"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -165,7 +180,8 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{icon} {percent}%",
+        // "format": "{icon} {percent}%",
+        "format": "BKL {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
@@ -174,11 +190,15 @@
             "warning": 20,
             "critical": 15
         },
-        "format": "{icon} {capacity}%",
-        "format-full": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
+        // "format": "{icon} {capacity}%",
+        "format": "BAT {capacity}%",
+        "format-full": "BAT {capacity}%",
+        "format-charging": "BAT {capacity}%",
+        "format-plugged": "BAT {capacity}%",
+       // "format-alt": "BAT {time}",
+       // "format-full": "{icon} {capacity}%",
+       // "format-charging": "󰂄 {capacity}%",
+       // "format-plugged": " {capacity}%",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
@@ -196,20 +216,27 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": " {ipaddr}/{cidr}",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        // "format-wifi": "  {essid}",
+        "format-wifi": "{essid}",
+        // "format-ethernet": " {ipaddr}/{cidr}",
+        // "tooltip-format": "{ifname} via {gwaddr} ",
+        // "format-linked": "{ifname} (No IP) ",
+        // "format-linked": "{ifname} (No IP) ",
+        // "format-disconnected": "󰖪 ",
+        "format-disconnected": "DISCONNECTED",
         // "format-alt": "{ifname}: {ipaddr}/{cidr}",
-	"on-click": "kitty -e nmtui"
+	"on-click": "nmtui connect"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{icon}  {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
-        "format-bluetooth-muted": "{icon} ",
-        "format-muted": "",
+        // "format": "{icon}  {volume}%",
+        "format": "VOL {volume}%",
+        "format-bluetooth": "VOL {volume}%",
+        "format-bluetooth-muted": "VOL MUTED",
+        // "format-bluetooth": "{icon} {volume}%",
+        // "format-bluetooth-muted": "{icon}󰂲",
+        // "format-muted": "󰖁",
+        "format-muted": "VOL MUTED",
         "format-source": " {volume}%",
         "format-source-muted": "",
         "format-icons": {

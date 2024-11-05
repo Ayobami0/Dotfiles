@@ -2,14 +2,13 @@
 
 /* Global */
 * {
-  font-family: "Hurmit Nerd Font";
-  font-size: 10px;
-    font-weight: bold;
+  font-family: "JetBrains Mono Nerd Font";
+  font-size: 0.9rem;
   transition-property: color;
   transition-duration: 0.01s;
+  /* background-color: shade(@base, 0.9); */
+  background-color: transparent;
   border-radius: 0;
-  background-color: shade(@base, 0.9);
-  padding: 0;
 }
 
 @keyframes blink_red {
@@ -29,23 +28,28 @@
 }
 
 /* Bar */
-/*window#waybar {*/
+window#waybar {
+  background-color: transparent;
+}
+
+window > box {
+  background-color: transparent;
+  margin: 0.3rem;
+  margin-bottom: 0;
+}
+
+/*.modules-left {*/
 /*  background-color: transparent;*/
 /*}*/
 
-/*window > box {*/
-/*  background-color: transparent;*/
-/*  margin: 0.3rem;*/
-/*  margin-bottom: 0;*/
-/*}*/
+.modules-left,
+.modules-center,
+.modules-right {
+  border: solid @rose 1px;
+  border-radius: 0px;
+  background-color: @base;
+}
 
-/*.modules-left,*/
-/*.modules-center,*/
-/*.modules-right {*/
-/*  border: solid @rose 1px;*/
-/*  border-radius: 0px;*/
-/*  background-color: @base;*/
-/*}*/
 
 .modules-center {
   padding: 0 5px;
@@ -96,10 +100,9 @@ tooltip label {
 #tray,
 #disk,
 #custom-pacman {
-  /*padding-left: 0.6rem;*/
-  /*padding-right: 0.6rem;*/
-  /*border-bottom: solid @rose 2px;*/
-  margin: 0 0.3em 0 0.3em;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  margin: 0.3em 0 0.3em 0;
   color: @text;
 }
 
@@ -109,47 +112,4 @@ tooltip label {
 
 #battery.charging {
   color: @foam;
-}
-
-#mode {
-  color: @love;
-}
-#clock {
-  color: @rose;
-}
-#memory {
-  color: @gold;
-}
-#temperature {
-  color: @pine;
-}
-#cpu {
-  color: @foam;
-}
-#mpd {
-  color: @iris;
-}
-#idle_inhibitor {
-  color: @gold;
-}
-#backlight {
-  color: @pine;
-}
-#pulseaudio {
-  color: @rose;
-}
-#network {
-  color: @pine;
-}
-#battery {
-  color: @foam;
-}
-#tray {
-  color: @iris;
-}
-#disk {
-  color: @love;
-}
-#pacman {
-  color: @iris;
 }

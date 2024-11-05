@@ -10,10 +10,10 @@ export FZF_DEFAULT_OPTS_FILE=~/.fzfrc
 
 zstyle ':omz:update' mode disabled  # disable automatic updates
 
-ZSH_THEME="miloshadzic"
+# ZSH_THEME="miloshadzic"
 # ZSH_THEME="random"
 # ZSH_THEME="minimal"
-# ZSH_THEME="nicoulaj"
+ZSH_THEME="nicoulaj"
 # ZSH_THEME="sorin"
 ENABLE_CORRECTION="false"
 
@@ -33,11 +33,13 @@ set -o vi
 
 eval $(thefuck --alias)
 
+alias vim=nvim
+alias vi=nvim
 alias fk=fuck
 alias rc="ranger ~/.config"
-alias emacs="emacs -nw"
+alias emacs="emacsclient -t"
 
-export VISUAL='nvim'
+export VISUAL='emacsclient'
 export EDITOR='nvim'
 export TERMINAL='alacritty'
 export PATH="$( echo $PATH| tr : '\n' |grep -v /home/Ayobami/.config/emacs/bin | paste -s -d: )"
@@ -52,9 +54,9 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:/home/Ayobami/.local/bin
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH=$PATH:/usr/bin/flutter/bin
 export ANDROID_SDK_ROOT='/opt/android-sdk'
 export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH=$PATH:/usr/bin/flutter/bin
 # export PATH='/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/flutter/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
 
 # attach to an existing session
@@ -107,3 +109,10 @@ fh() {
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+# bun completions
+[ -s "/home/Ayobami/.bun/_bun" ] && source "/home/Ayobami/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

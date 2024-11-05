@@ -65,8 +65,8 @@ window {
     margin:                      0px;
     padding:                     0px;
     border:                      1px solid;
-    border-radius:               0px;
-    /*border-color:                @border-colour;*/
+    border-radius:               5px;
+    border-color:                @border-colour;
     cursor:                      "default";
     /* Backgroud Colors */
     background-color:            @background-colour;
